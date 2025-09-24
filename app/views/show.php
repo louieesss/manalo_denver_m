@@ -12,6 +12,14 @@
 
     <h1 class="text-4xl font-bold text-indigo-700 mb-8">Welcome to CRUD</h1>
 
+    <div class="search-container">
+            <form action="<?= site_url('users/show'); ?>" method="get">
+                <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+                <input type="text" name="q" placeholder="Search records..." value="<?= html_escape($q); ?>" id="searchBox">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+
     <div class="overflow-x-auto bg-white shadow-xl rounded-xl p-6">
       <table class="w-full text-sm table-auto">
         <thead>
@@ -45,6 +53,11 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Pagination links -->
+        <div class="pagination-container">
+            <?php if (isset($page)) echo $page; ?>
+        </div>
 
     <a href="<?=site_url('users/create');?>" 
        class="inline-block mt-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition">
